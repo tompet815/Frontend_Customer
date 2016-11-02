@@ -11,6 +11,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+
     <name>frontend_customer</name>
     <dependencies>
         <dependency>
@@ -19,15 +20,7 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>sample</groupId>
-    <artifactId>com.sample</artifactId>
-    <version>1.0</version>
-    <scope>system</scope>
-    <systemPath>${project.basedir}/src/main/resources/BackendMock-1.0-SNAPSHOT.jar</systemPath>
-</dependency>
-    </dependencies>
-    
+    </dependencies>  
       <build>
         <plugins>
             <plugin>
