@@ -20,8 +20,34 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+    
+        <dependency>
+            <groupId>B</groupId>
+            <artifactId>FerryProjectContract</artifactId>
+            <version>1.0-20161105.131543-1</version>
+        </dependency>      
+        <dependency>
+    <groupId>com.mycompany</groupId>
+    <artifactId>BackendMock</artifactId>
+    <version>1.0-20161108.173640-2</version>
+</dependency>
+
     </dependencies>  
-      <build>
+    
+    <repositories>
+        <repository>
+            <id>artifactory</id>
+            <name>artifactory-releases</name>
+            <url>http://104.236.119.119:8082/artifactory/libs-release-local</url>
+        </repository>
+        <repository>
+            <id>artifactory-snap</id>
+            <name>artifactory-snapshots</name>
+            <url>http://104.236.119.119:8082/artifactory/libs-snapshot-local</url>
+        </repository> 
+    </repositories>
+
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
