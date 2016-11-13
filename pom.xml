@@ -41,13 +41,10 @@
         <dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>BackendMock</artifactId>
-            <version>1.0-20161113.160511-6</version>
+            <version>1.0-20161113.214921-7</version>
         </dependency>
-
     </dependencies>  
     
-    
-
     <build>
         <plugins>
             <plugin>
