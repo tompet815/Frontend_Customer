@@ -7,7 +7,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <script>
+<!--    <script>
         $(document).ready(function () {
             if ($("#gotReservation").val() === "yes") {
                 $("#myreservation").show();
@@ -20,13 +20,13 @@
 
             }
         });
-    </script>
+    </script>-->
 <html>
-    <title>Your reservation</title>
+    <title>Edit reservation</title>
 </head>
 <body>
     <div class="col-md-12">
-        <h1>Your reservation</h1>
+        <h1>Edit reservation</h1>
         <hr/>
         <div class="col-md-12">
             <form method="get" class="form-inline">
@@ -46,39 +46,49 @@
             <table class="table table-striped">
                 <tbody>
                     <tr>
-                        <td>Reservation no</td><td>${reservation.id}</td>                 
+                        <td width="20%">Reservation no</td>
+                        <td>${reservationid}</td>                 
                     </tr>
                     <tr>
-                        <td>From</td><td>${reservation.originalHarbour}</td>   
+                        <td width="20%">From</td>
+                        <td contenteditable='true'>${reservationOriginalHarbour}</td>   
                     </tr>
                     <tr>
-                        <td>To</td><td>${reservation.destinationHarbour}</td>   
+                        <td width="20%">To</td>
+                        <td contenteditable='true'>${reservation.destinationHarbour}</td>   
                     </tr>
                     <tr>
-                        <td>Departure date</td><td>${reservation.departureDate}</td>   
+                        <td width="20%">Departure date</td>
+                        <td contenteditable='true'>${reservation.departureDate}</td>   
                     </tr>
                     <tr>
-                        <td>Departure time</td><td>${reservation.departureTime}</td>   
+                        <td width="20%">Departure time</td>
+                        <td contenteditable='true'>${reservation.departureTime}</td>   
                     </tr>
                     <tr>
-                        <td>Travel duration</td><td>${reservation.duration}</td>   
+                        <td width="20%">Travel duration</td>
+                        <td>${reservation.duration}</td>   
                     </tr>
                     <tr>
-                        <td>Passenger(Non-resident)</td><td>${reservation.otherPassengerNumber}</td>   
+                        <td width="20%">Passenger(Non-resident)</td>
+                        <td  contenteditable='true'>${reservation.otherPassengerNumber}</td>   
                     </tr>
                     <tr>
-                        <td>Passenger(Resident)</td><td>${reservation.islandResidentNumber}</td>   
+                        <td width="20%">Passenger(Resident)</td
+                        <td contenteditable='true'>${reservation.islandResidentNumber}</td>   
                     </tr>
                     <tr>
-                        <td>Vehicle type</td><td>${reservation.vehicleType}</td>   
+                        <td width="20%">Vehicle type</td>
+                        <td contenteditable='true'>${reservation.vehicleType}</td>   
                     </tr>
                     <tr>
-                        <td>Total price</td><td>${reservation.totalPrice}</td>   
+                        <td width="20%">Total price</td>
+                        <td>${reservation.totalPrice}</td>   
                     </tr>
                 </tbody>
             </table>
             <div class="pull-right">
-                <a href="editReservation.jsp"><button class="btn btn-info" type="button">Edit booking</button></a>
+                <button class="btn btn-info">Save changes</button>
                 <form method="post" style="display:inline-block">
                     <input name="reservationno" hidden value="${reservationno}">
                     <button type="submit"class="btn btn-danger">Cancel booking</button>
