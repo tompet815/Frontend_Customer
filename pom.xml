@@ -12,15 +12,37 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-    <name>frontend_customer</name>
-    <dependencies>
-        <dependency>
+    <name>frontend_customer</name> 
+         <repositories>
+            <repository>
+                <id>artifactory</id>
+                <name>artifactory-releases</name>
+                <url>http://104.236.119.119:8082/artifactory/libs-release-local</url>
+            </repository>
+            <repository>
+                <id>artifactory-snap</id>
+                <name>artifactory-snapshots</name>
+                <url>http://104.236.119.119:8082/artifactory/libs-snapshot-local</url>
+            </repository> 
+        </repositories>
+        <dependencies>
+            <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-    </dependencies>  
+            <dependency>
+                <groupId>B</groupId>
+                <artifactId>FerryProjectContract</artifactId>
+                <version>1.0-20161105.131543-1</version>
+            </dependency> 
+            <dependency>
+                <groupId>com.mycompany</groupId>
+                <artifactId>BackendMock</artifactId>
+                <version>1.0-20161113.160511-6</version>
+            </dependency>
+        </dependencies>
       <build>
         <plugins>
             <plugin>
