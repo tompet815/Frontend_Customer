@@ -64,7 +64,7 @@
                         <td>Travel duration</td><td>${reservation.duration}</td>   
                     </tr>
                     <tr>
-                        <td>Passenger(Non-resident)</td><td>${reservation.otherPassengerNumber}</td>   
+                        <td>Passenger(Non-resident)</td><td>${reservationotherPassengerNumber}</td>   
                     </tr>
                     <tr>
                         <td>Passenger(Resident)</td><td>${reservation.islandResidentNumber}</td>   
