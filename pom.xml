@@ -20,16 +20,11 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-    
-        <dependency>
-            <groupId>B</groupId>
-            <artifactId>FerryProjectContract</artifactId>
-            <version>1.0-20161105.131543-1</version>
-        </dependency>      
-        <dependency>
+
+<dependency>
     <groupId>com.mycompany</groupId>
     <artifactId>BackendMock</artifactId>
-    <version>1.0-20161108.173640-2</version>
+    <version>1.0-20161113.214921-7</version>
 </dependency>
 
     </dependencies>  

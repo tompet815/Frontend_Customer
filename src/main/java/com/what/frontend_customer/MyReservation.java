@@ -1,7 +1,11 @@
 package com.what.frontend_customer;
 
+import backendMock.DummyCustomerBackend;
+
+import generalstuff.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,19 +18,28 @@ public class MyReservation extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        DummyCustomerBackend mock= new DummyCustomerBackend();
+      
+        System.out.println();
         String reservationNo;
         try {
             reservationNo = request.getParameter("reservationno");
 
             if (reservationNo != null) {
+                int intResNo=Integer.parseInt(reservationNo);
+   ReservationDetail detail=mock.getReservation(new ReservationIdentifier(intResNo));
 
+   if(detail==null){
                 //call backend and add logic if reservation no does not exist and so on...
                 request.setAttribute("error", "The reservation number does not exit");
                 request.setAttribute("errorBgColor","red");
-                
-                
+   }
+   else {
+   
+                   request.setAttribute("detail", detail);//change (delete) this  later.
                 request.setAttribute("gotReservation", "yes");//change (delete) this  later.
-            }
+   }         
+   }
             request.setAttribute("reservationno", reservationNo);
             request.getRequestDispatcher("my.jsp").forward(request, response);
 
