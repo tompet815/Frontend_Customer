@@ -76,7 +76,7 @@
                 <div  style="position: relative;z-index: 9999;" class="col-md-12">
                     <div class="pull-right">
                         <span ${hidden}>
-                            <a href="/editReservation" ><button class="btn btn-info" type="button">Edit booking <i class="fa fa-pencil" aria-hidden="true"></i></button></a>
+                            <a href="./editReservation" ><button class="btn btn-info" type="button">Edit booking <i class="fa fa-pencil" aria-hidden="true"></i></button></a>
                             <form method="post" style="display:inline-block">
                                 <input name="reservationno" hidden value="${reservationno}">
                                 <button type="submit"class="btn btn-danger">Cancel booking <i class="fa fa-ban" aria-hidden="true"></i></button>
