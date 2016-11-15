@@ -1,6 +1,38 @@
-img {
-    opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
-    width:100%;
+.container{
+    padding-top:100px;
+}
+.buttons{
+    padding-top:100px;
+    text-align: center;
+}
+.title{
+    font-size: 72px;
+}
+.btn-default{
+    font-size:xx-large;
+    color:white;
+    background-color: royalblue;
+    margin-right: 50px;
+}
+#background {
+    width: 100%;
+    height: 100%;
 }
 
+/*Image source
+http://www.kurosima.net/kobetu.php?pubid=1387&cate1id=86&p=1&p_ref= 
+This page is for educational use only */
+#background::after {
+    content: "";
+    background: url(../img/ferrypic.jpg);
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}

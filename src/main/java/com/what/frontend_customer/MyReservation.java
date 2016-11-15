@@ -1,31 +1,25 @@
 package com.what.frontend_customer;
 
-import backendMock.DummyCustomerBackend;
-
 import generalstuff.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import backendMock.DummyCustomerBackend;
-import generalstuff.*;
 
 @WebServlet(name = "Reservation", urlPatterns = {"/myreservation"})
 public class MyReservation extends HttpServlet {
 
-    DummyCustomerBackend dummyCustomerBackend = new DummyCustomerBackend();
-//    ReservationDetail rd= new ReservationDetail(null, null, null, null, 0, 0, 0, 0, 0, 0, 0);
+    DummyCustomerBackend mock = new DummyCustomerBackend();
 
+    //See reservation
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        DummyCustomerBackend mock = new DummyCustomerBackend();
 
-        System.out.println();
         String reservationNo;
         try {
             reservationNo = request.getParameter("reservationno");
@@ -35,15 +29,17 @@ public class MyReservation extends HttpServlet {
                 ReservationDetail detail = mock.getReservation(new ReservationIdentifier(intResNo));
 
                 if (detail == null) {
-                    //call backend and add logic if reservation no does not exist and so on...
-                    request.setAttribute("error", "The reservation number does not exit");
+                    request.setAttribute("error", "The reservation number does not exist");
                     request.setAttribute("errorBgColor", "red");
+                    request.setAttribute("hidden", "hidden");
                 }
                 else {
-
-                    request.setAttribute("detail", detail);//change (delete) this  later.
-                    request.setAttribute("gotReservation", "yes");//change (delete) this  later.
+                    request.setAttribute("detail", detail);
+                    request.setAttribute("hidden", "");
                 }
+            }
+            else {
+                request.setAttribute("hidden", "hidden");
             }
             request.setAttribute("reservationno", reservationNo);
 
@@ -58,6 +54,7 @@ public class MyReservation extends HttpServlet {
         }
     }
 
+    //cancel reservation
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
@@ -65,15 +62,22 @@ public class MyReservation extends HttpServlet {
         try {
 
             reservationNo = request.getParameter("reservationno");
-
             if (reservationNo == null) {
+                request.setAttribute("hidden", "hidden");
                 request.setAttribute("error", "Error. The reservation number is required");
             }
             else {
-                request.setAttribute("success", "Your reservation has successfully cancelled.");
-                System.out.println("success");
-            }
 
+                int intResNo = Integer.parseInt(reservationNo);
+                if (mock.deleteReservation(new ReservationIdentifier(intResNo))) {
+                    request.setAttribute("hidden", "hidden");
+                    request.setAttribute("success", "Your reservation has successfully cancelled.");
+                }
+                else {
+                    request.setAttribute("hidden", "");
+                    request.setAttribute("error", "System Error. Please contact Cluster II Ferries");
+                }
+            }
             request.getRequestDispatcher("my.jsp").forward(request, response);
 
         }
