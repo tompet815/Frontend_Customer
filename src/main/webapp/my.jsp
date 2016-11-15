@@ -71,6 +71,7 @@
 
                 <div class="pull-right">
                     <button class="btn btn-info">Edit booking</button>
+                <a href="editReservation.jsp"><button class="btn btn-info" type="button">Edit booking</button></a>
                     <form method="post" style="display:inline-block">
                         <input name="reservationno" hidden value="${reservationno}">
                         <button type="submit"class="btn btn-danger">Cancel booking</button>
