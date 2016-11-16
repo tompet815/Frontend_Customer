@@ -36,7 +36,7 @@
 <dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>BackendMock</artifactId>
-    <version>1.0-20161116.010842-8</version>
+    <version>1.0-20161116.144530-9</version>
         </dependency>
     </dependencies>  
     
