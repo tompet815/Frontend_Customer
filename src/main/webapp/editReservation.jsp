@@ -34,7 +34,7 @@
                     <table class="table" style="background-color: floralwhite">
                         <tbody>
                             <tr>
-                                <td>Reservation no</td><td>${detail.id}</td>                 
+                                <td>Reservation no</td><td>${reservationno}</td>                 
                             </tr>
                             <tr>
                                 <td>Name</td><td contenteditable='true'>${detail.customerName}</td>   
@@ -68,7 +68,7 @@
                                 <td>Heavy machinery</td><td contenteditable='true'>${detail.numberOfHeavyMachinery}</td>   
                             </tr>
                             <tr>
-                                <td>Total price</td><td></td>   
+                                <td>Total price</td><td contenteditable='true'></td>   
                             </tr>
                         </tbody>
                     </table>
