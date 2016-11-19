@@ -33,10 +33,10 @@
             <scope>provided</scope>
         </dependency>
 
-<dependency>
+        <dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>BackendMock</artifactId>
-    <version>1.0-20161119.185125-10</version>
+            <version>1.0-20161119.234452-11</version>
         </dependency>
     </dependencies>  
     
