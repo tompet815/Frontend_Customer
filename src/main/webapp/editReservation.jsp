@@ -31,67 +31,47 @@
                     <span id="successMsg" style="color: green; margin-top: 10px; display:block">${success}</span>
                 </div>
                 <div  style="position: relative;z-index: 9999;" class="col-md-12" style="margin-top:15px" ${hidden} id="myreservation">
-                    <table class="table" style="background-color: floralwhite">
-                        <tbody>
-                            <tr>
-                                <td>Reservation no</td><td>${reservationno}</td>                 
-                            </tr>
-                            <tr>
-                                <td>Name</td><td contenteditable='true'>${detail.customerName}</td>   
-                            </tr>
-                            <tr>
-                                <td>From</td><td contenteditable='true'>${detail.departureSummary.lineSummary.departurePort}</td>   
-                            </tr>
-                            <tr>
-                                <td>To</td><td contenteditable='true'>${detail.departureSummary.lineSummary.destinationPort}</td>   
-                            </tr>
-                            <tr>
-                                <td>Departure date & time</td><td contenteditable='true'>${detail.departureSummary.departureTime}</td>   
-                            </tr>
-
-                            <tr>
-                                <td>Travel duration</td><td>${detail.departureSummary.lineSummary.duration}</td>   
-                            </tr>
-                            <tr>
-                                <td>Passenger(Non-resident)</td><td contenteditable='true'>${detail.numberOfPeople}</td>   
-                            </tr>
-                            <tr>
-                                <td>Passenger(Resident)</td><td contenteditable='true'>${detail.numberOfResidents}</td>   
-                            </tr>
-                            <tr>
-                                <td>Car</td><td contenteditable='true'>${detail.numberOfCars}</td>   
-                            </tr>
-                            <tr>
-                                <td>Lorry</td><td contenteditable='true'>${detail.numberOfLorries}</td>   
-                            </tr>
-                            <tr>
-                                <td>Heavy machinery</td><td contenteditable='true'>${detail.numberOfHeavyMachinery}</td>   
-                            </tr>
-                            <tr>
-                                <td>Total price</td><td contenteditable='true'></td>   
-                            </tr>
-                        </tbody>
-                    </table>
+                    <form method="post" class="form-inline">
+                        <table class="table" style="background-color: floralwhite">
+                            <tbody>
+                                <tr>
+                                    <td>Reservation no</td><td>${reservationno}</td>                 
+                                </tr>
+                                <tr>
+                                    <td>Name</td><td contenteditable='true'>${detail.customerName}</td>   
+                                </tr>
+                                <tr>
+                                    <td>From</td><td><input style="border: none;" name="departurePort" value="${detail.departureSummary.lineSummary.departurePort}"></td>   
+                                </tr>
+                                <tr>
+                                    <td>To</td><td><input style="border: none; " name="destinationPort" value="${detail.departureSummary.lineSummary.destinationPort}"></td>   
+                                </tr>
+                                <tr>
+                                    <td>Departure date & time</td><td><input style="border: none; " name="departureDate" value="${detail.departureSummary.departureTime}"</td>   
+                                </tr>
+                                <tr>
+                                    <td>Passenger(Non-resident)</td><td><input style="border: none;" name="numberOfPeople" value="${detail.numberOfPeople}"></td>   
+                                </tr>
+                                <tr>
+                                    <td>Passenger(Resident)</td><td><input style="border: none;" name="numberOfResidents" value="${detail.numberOfResidents}"</td>   
+                                </tr>
+                                <tr>
+                                    <td>Car</td><td><input style="border: none;" name="numberOfCars" value="${detail.numberOfCars}"</td>   
+                                </tr>
+                                <tr>
+                                    <td>Lorry</td><td><input style="border: none;" name="numberOfLorries" value="${detail.numberOfLorries}"</td>   
+                                </tr>
+                                <tr>
+                                    <td>Heavy machinery</td><td><input style="border: none;" name="numberOfHeavyMachineries" value="${detail.numberOfHeavyMachinery}"</td>   
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="submit"class="btn btn-info">Save changes </button>
+                    </form>
                 </div>
                 <div  style="position: relative;z-index: 9999;" class="col-md-12">
-                    <div class="pull-right">
-                        <span ${hidden}>
-                            <form method="post" style="display:inline-block">
-                                <input name="reservationno" hidden value="${reservationno}">
-                                <input name="detail.id" hidden value="${detail.id}">
-                                <input name="detail.customerName" hidden value="${detail.customerName}">
-                                <input name="detail.departureSummary.lineSummary.departurePort" hidden value="${detail.departureSummary.lineSummary.departurePort}">
-                                <input name="detail.departureSummary.lineSummary.destinationPort" hidden value="${detail.departureSummary.lineSummary.destinationPort}">
-                                <input name="detail.departureSummary.departureTime" hidden value="${detail.departureSummary.departureTime}">
-                                <input name="detail.departureSummary.lineSummary.duration" hidden value="${detail.departureSummary.lineSummary.duration}">
-                                <input name="detail.numberOfPeople" hidden value="${detail.numberOfPeople}">
-                                <input name="detail.numberOfResidents" hidden value="${detail.numberOfResidents}">
-                                <input name="detail.numberOfCars" hidden value="${detail.numberOfCars}">
-                                <input name="detail.numberOfLorries" hidden value="${detail.numberOfLorries}">
-                                <input name="detail.numberOfHeavyMachinery" hidden value="${detail.numberOfHeavyMachinery}">
-                                <button type="submit"class="btn btn-danger">Save changes <i class="fa fa-ban" aria-hidden="true"></i></button>
-                            </form>
-                        </span>
+
+                    <div class="pull-right">            
                         <a href="./"><button class="btn btn-info" type="button">Back to Home <i class="fa fa-home" aria-hidden="true"></i></button></a>
                     </div>
                 </div>
