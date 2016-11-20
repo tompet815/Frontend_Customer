@@ -47,10 +47,22 @@
                                     <td>To</td><td><input style="border: none; " name="destinationPort" value="${detail.departureSummary.lineSummary.destinationPort}"></td>   
                                 </tr>
                                 <tr>
+                                    <td>Departure date & time</td><td><input style="border: none; " name="departureDate" value="${detail.departureSummary.departureTime}"</td>   
+                                </tr>
+                                <tr>
                                     <td>Passenger(Non-resident)</td><td><input style="border: none;" name="numberOfPeople" value="${detail.numberOfPeople}"></td>   
                                 </tr>
                                 <tr>
                                     <td>Passenger(Resident)</td><td><input style="border: none;" name="numberOfResidents" value="${detail.numberOfResidents}"</td>   
+                                </tr>
+                                <tr>
+                                    <td>Car</td><td><input style="border: none;" name="numberOfCars" value="${detail.numberOfCars}"</td>   
+                                </tr>
+                                <tr>
+                                    <td>Lorry</td><td><input style="border: none;" name="numberOfLorries" value="${detail.numberOfLorries}"</td>   
+                                </tr>
+                                <tr>
+                                    <td>Heavy machinery</td><td><input style="border: none;" name="numberOfHeavyMachineries" value="${detail.numberOfHeavyMachinery}"</td>   
                                 </tr>
                             </tbody>
                         </table>
