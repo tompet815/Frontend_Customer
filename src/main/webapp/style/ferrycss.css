@@ -36,3 +36,8 @@ This page is for educational use only */
     background-size: 100%;
     background-repeat: no-repeat;
 }
+
+.formOnImage{    
+    position: relative;
+    z-index: 9999;
+}

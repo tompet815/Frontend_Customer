@@ -19,18 +19,18 @@
                 <hr/>
                 <div class="col-md-12">
                     <form method="get" class="form-inline">
-                        <div class ="form-group"style="position: relative;z-index: 9999;">
+                        <div class ="form-group formOnImage">
                             <label for="reservationno" >Your reservation no: </label>
                             <input class="form-control" required id="reservationNoInput" value="${reservationno}" name="reservationno" placeholder="your reservation no"/>
                         </div>   
-                        <span style="position: relative;z-index: 9999;">
+                        <span class="formOnImage">
                             <button type="submit" class="btn btn-info ">Show reservation</button>
                         </span>
                         <span id="errorMsg" style="color: red">${error}</span>                    
                     </form>
                     <span id="successMsg" style="color: green; margin-top: 10px; display:block">${success}</span>
                 </div>
-                <div  style="position: relative;z-index: 9999;" class="col-md-12" style="margin-top:15px" ${hidden} id="myreservation">
+                <div  class="col-md-12 formOnImage" style="margin-top:15px" ${hidden} id="myreservation">
                     <table class="table" style="background-color: floralwhite">
                         <tbody>
                             <tr>
@@ -73,7 +73,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div  style="position: relative;z-index: 9999;" class="col-md-12">
+                <div class="formOnImage col-md-12">
                     <div class="pull-right">
                         <span ${hidden}>
                             <a href="/editReservation" ><button class="btn btn-info" type="button">Edit booking <i class="fa fa-pencil" aria-hidden="true"></i></button></a>

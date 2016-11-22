@@ -13,30 +13,52 @@
     </properties>
 
     <name>frontend_customer</name> 
-         <repositories>
-            <repository>
-                <id>artifactory</id>
-                <name>artifactory-releases</name>
-                <url>http://104.236.119.119:8082/artifactory/libs-release-local</url>
-            </repository>
-            <repository>
-                <id>artifactory-snap</id>
-                <name>artifactory-snapshots</name>
-                <url>http://104.236.119.119:8082/artifactory/libs-snapshot-local</url>
-            </repository> 
-        </repositories>
-        <dependencies>
-            <dependency>
+    <repositories>
+        <repository>
+            <id>artifactory</id>
+            <name>artifactory-releases</name>
+            <url>http://104.236.119.119:8082/artifactory/libs-release-local</url>
+        </repository>
+        <repository>
+            <id>artifactory-snap</id>
+            <name>artifactory-snapshots</name>
+            <url>http://104.236.119.119:8082/artifactory/libs-snapshot-local</url>
+        </repository> 
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-
-<dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>BackendMock</artifactId>
-    <version>1.0-20161113.214921-7</version>
+            <version>1.0-20161120.020114-12</version>
         </dependency>
     </dependencies>  
     
@@ -87,35 +109,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- How to start a glassfish instance from Maven
-            Got it from:
-            http://stackoverflow.com/questions/34737628/glassfishdeploy-with-maven
-        <plugin>
-            <groupId>org.glassfish.maven.plugin</groupId>
-            <artifactId>maven-glassfish-plugin</artifactId>
-            <version>2.1</version>
-            <configuration>
-                <glassfishDirectory>${local.glassfish.home}</glassfishDirectory>
-                <user>admin</user>
-                <passwordFile>${local.glassfish.passfile}</passwordFile>
-                <domain>
-                    <name>domain1</name>
-                    <httpPort>8080</httpPort>
-                    <adminPort>4848</adminPort>
-                </domain>
-                <components>
-                    <component>
-                        <name>${project.artifactId}</name>
-                        <artifact>target/${project.build.finalName}.war</artifact>
-                    </component>
-                </components>
-                <debug>true</debug>
-                <terse>false</terse>
-                <echo>true</echo>
-            </configuration>
-        </plugin>
-
-            -->
+    
         </plugins>
     </build>
 </project>

@@ -9,15 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import backendMock.DummyCustomerBackend;
+import interfaces.CustomerInterface;
 
 @WebServlet(name = "Reservation", urlPatterns = {"/myreservation"})
 public class MyReservation extends HttpServlet {
 
-    DummyCustomerBackend mock = new DummyCustomerBackend();
+    CustomerInterface mock;
+
+    public MyReservation() {
+        mock = new DummyCustomerBackend();
+    }
+
+    public MyReservation(CustomerInterface backend) {
+        mock = backend;
+
+    }
 
     //See reservation
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 
         String reservationNo;
@@ -47,6 +57,7 @@ public class MyReservation extends HttpServlet {
 
         }
         catch (Exception e) {
+
             out.println("<h2>" + e.getMessage() + "</h2>");
             out.print("<hr/><pre>");
             e.printStackTrace(out);
@@ -56,7 +67,7 @@ public class MyReservation extends HttpServlet {
 
     //cancel reservation
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String reservationNo;
         try {
