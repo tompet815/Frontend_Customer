@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -46,14 +47,14 @@
                                 <td>To</td><td>${detail.departureSummary.lineSummary.destinationPort}</td>   
                             </tr>
                             <tr>
-                                <td>Departure date & time</td><td>${detail.departureSummary.departureTime}</td>   
+                                <td>Departure date & time</td><td><fmt:formatDate pattern="dd-MMM-yyyy" value="${detail.departureSummary.departureTime}" /></td>   
                             </tr>
 
                             <tr>
                                 <td>Travel duration</td><td>${detail.departureSummary.lineSummary.duration}</td>   
                             </tr>
                             <tr>
-                                <td>Passenger(Non-resident)</td><td>${detail.numberOfPeople}</td>   
+                                <td>Passenger(Non-resident)</td><td>${detail.numberOfPeople}</td>
                             </tr>
                             <tr>
                                 <td>Passenger(Resident)</td><td>${detail.numberOfResidents}</td>   
