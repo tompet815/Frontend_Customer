@@ -14,6 +14,7 @@
     <script src="./script/ferryscript.js"></script>
     <script src="./script/changedSelectedRoute.js"></script>
     <script src="./script/datePickerAction.js"></script>
+    <script src="./script/injectDepartureDetails.js"></script>
 <html>
     <title>Make new reservation</title>
 </head>
@@ -45,6 +46,14 @@
                                 </tr>
                                 <tr id="residentPassengersRow" style="display: none">
                                     <td>Passenger number(Residents)</td><td><input style="border: none;" name="numberOfResidents"</td>   
+                                </tr>
+                                <tr>
+                                    <td>Departure hour:</td>
+                                    <td>
+                                        <select id="departureHoursSelectBox" required="required">
+                                            <option selected="selected">- Please choose -</option>
+                                        </select>
+                                    </td>   
                                 </tr>
                             </tbody>
                         </table>

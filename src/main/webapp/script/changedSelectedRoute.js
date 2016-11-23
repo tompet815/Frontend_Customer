@@ -2,8 +2,8 @@
 function changedSelectedRoute() {
     var selectBox = document.getElementById("routeSelectBox");
     var departureDateRow = document.getElementById("departureDateRow");
-    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    if (selectedValue === '- Please choose -') {
+    var routeValue = selectBox.options[selectBox.selectedIndex].value;
+    if (routeValue === '- Please choose -') {
         if (document.getElementById("departureDateRow").style.display === '') {
             document.getElementById("departureDateRow").style.display = 'none';
         }
@@ -15,9 +15,11 @@ function changedSelectedRoute() {
         }
     } else {
         departureDateRow.style.display = '';
-        if($('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).val() !== ''){
+        dateValue = $('#datepicker').datepicker().val();
+        if(dateValue !== ''){
             document.getElementById("nonResidentPassengersRow").style.display = '';
             document.getElementById("residentPassengersRow").style.display = '';
+            loadDepartureDetails(routeValue, dateValue);
         }
     }
 }

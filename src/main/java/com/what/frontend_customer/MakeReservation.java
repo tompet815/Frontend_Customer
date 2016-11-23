@@ -1,12 +1,19 @@
 package com.what.frontend_customer;
 
 import backendMock.DummyCustomerBackend;
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
+import generalstuff.DepartureDetail;
+import generalstuff.LineIdentifier;
 import generalstuff.LineSummary;
-import generalstuff.ReservationIdentifier;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,32 +24,50 @@ import javax.servlet.http.HttpServletResponse;
 public class MakeReservation extends HttpServlet {
 
     DummyCustomerBackend mock = new DummyCustomerBackend();
-    private static final Gson gson = new Gson();
 
     //See reservation
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        LineSummary[] lines;
+        String lineId, dateString;
+        lineId = request.getParameter("lineId");
+        dateString = request.getParameter("date");
 
-        try {
-            String linesDtoString = "[{\"id\":1,\"departurePort\":\"Kalundborg\",\"destinationPort\":\"Island 1\",\"duration\":20},"
-                    + "{\"id\":2,\"departurePort\":\"Island 1\",\"destinationPort\":\"Kalundborg\",\"duration\":20}]";
-            lines = gson.fromJson(linesDtoString, LineSummary[].class);
-//            gson.fromJson(new String(delivery.getBody()), LineSummary.class);
+        if (lineId != null && dateString != null) {
+//            request to get departure details
+            DateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
 
-            for (LineSummary line : lines) {
-                System.out.println(line.getDeparturePort()+" - "+line.getDestinationPort());
+            try {
+                Date date = formatter.parse(dateString);
+//                Collection<DepartureDetail> departures;
+//                departures = mock.getDepartures(new LineIdentifier(request.getParameter("lineId")), date);
+//              I will assume that departures is an Array with departure dates:
+                Collection departureHours = new ArrayList<String>() {
+                    {
+                        add("11:45");
+                        add("12:45");
+                        add("13:45");
+                    }
+                };
+                request.setAttribute("departureHours", departureHours);
+                request.getRequestDispatcher("RenderDepartures.jsp").forward(request, response);
+
+            } catch (ParseException ex) {
+                Logger.getLogger(MakeReservation.class.getName()).log(Level.SEVERE, null, ex);
+                out.println("<h2>" + ex.getMessage() + "</h2>");
+                out.print("<hr/><pre>");
+                ex.printStackTrace(out);
+                out.println("</pre>");
             }
+        } else {
+//          request to get lines
+            Collection<LineSummary> lines;
+            lines = mock.getLines();
+            System.out.println("ma-ta!");
+            System.out.println(mock.getDepartures(new LineIdentifier(request.getParameter("lineId")), new Date()).size());
+
             request.setAttribute("lines", lines);
-
             request.getRequestDispatcher("MakeReservation.jsp").forward(request, response);
-
-        } catch (JsonSyntaxException | IOException | ServletException e) {
-            out.println("<h2>" + e.getMessage() + "</h2>");
-            out.print("<hr/><pre>");
-            e.printStackTrace(out);
-            out.println("</pre>");
         }
     }
 
