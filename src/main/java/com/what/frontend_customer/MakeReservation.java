@@ -1,6 +1,7 @@
 package com.what.frontend_customer;
 
 import backendMock.DummyCustomerBackend;
+import com.google.gson.Gson;
 import generalstuff.DepartureDetail;
 import generalstuff.LineIdentifier;
 import generalstuff.LineSummary;
@@ -9,7 +10,6 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.logging.Level;
@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MakeReservation extends HttpServlet {
 
     DummyCustomerBackend mock = new DummyCustomerBackend();
+    Gson gson = new Gson();
 
     //See reservation
     @Override
@@ -42,15 +43,12 @@ public class MakeReservation extends HttpServlet {
 //                Collection<DepartureDetail> departures;
 //                departures = mock.getDepartures(new LineIdentifier(request.getParameter("lineId")), date);
 //              I will assume that departures is an Array with departure dates:
-                Collection departureHours = new ArrayList<String>() {
-                    {
-                        add("11:45");
-                        add("12:45");
-                        add("13:45");
-                    }
-                };
-                request.setAttribute("departureHours", departureHours);
-                request.getRequestDispatcher("RenderDepartures.jsp").forward(request, response);
+                String[] hours = {"11:45","12:45","13:45"};
+                String hoursString = gson.toJson(hours);
+
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(hoursString);
 
             } catch (ParseException ex) {
                 Logger.getLogger(MakeReservation.class.getName()).log(Level.SEVERE, null, ex);

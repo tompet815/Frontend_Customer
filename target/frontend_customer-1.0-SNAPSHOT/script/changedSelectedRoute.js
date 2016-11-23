@@ -13,12 +13,16 @@ function changedSelectedRoute() {
         if (document.getElementById("residentPassengersRow").style.display === '') {
             document.getElementById("residentPassengersRow").style.display = 'none';
         }
+        if (document.getElementById("departureHoursRow").style.display === '') {
+            document.getElementById("departureHoursRow").style.display = 'none';
+        }
     } else {
         departureDateRow.style.display = '';
         dateValue = $('#datepicker').datepicker().val();
         if(dateValue !== ''){
             document.getElementById("nonResidentPassengersRow").style.display = '';
             document.getElementById("residentPassengersRow").style.display = '';
+            document.getElementById("departureHoursRow").style.display = '';
             loadDepartureDetails(routeValue, dateValue);
         }
     }

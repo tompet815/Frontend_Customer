@@ -25,7 +25,7 @@
                 <hr/>
                 <div  style="position: relative;z-index: 9999;" class="col-md-12" style="margin-top:15px" ${hidden} id="myreservation">
                     <form method="post" class="form-inline">
-                        <table class="table" style="background-color: floralwhite">
+                        <table class="table" id="reservationTable" style="background-color: floralwhite">
                             <tbody>
                                 <tr>
                                     <td>Route</td>
@@ -47,11 +47,10 @@
                                 <tr id="residentPassengersRow" style="display: none">
                                     <td>Passenger number(Residents)</td><td><input style="border: none;" name="numberOfResidents"</td>   
                                 </tr>
-                                <tr>
+                                <tr id="departureHoursRow" style="display: none">
                                     <td>Departure hour:</td>
                                     <td>
                                         <select id="departureHoursSelectBox" required="required">
-                                            <option selected="selected">- Please choose -</option>
                                         </select>
                                     </td>   
                                 </tr>

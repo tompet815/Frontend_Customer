@@ -7,6 +7,9 @@ $(function () {
             if (document.getElementById("residentPassengersRow").style.display === 'none') {
                 document.getElementById("residentPassengersRow").style.display = '';
             }
+            if (document.getElementById("departureHoursRow").style.display === 'none') {
+                document.getElementById("departureHoursRow").style.display = '';
+            }
             var routeSelectBox = document.getElementById("routeSelectBox");
             var routeValue = routeSelectBox.options[routeSelectBox.selectedIndex].value;
             loadDepartureDetails(routeValue, dateValue);
