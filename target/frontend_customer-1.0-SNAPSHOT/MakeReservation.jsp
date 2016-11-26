@@ -15,10 +15,12 @@
     <script src="./script/changedSelectedRoute.js"></script>
     <script src="./script/datePickerAction.js"></script>
     <script src="./script/injectDepartureDetails.js"></script>
+    <script src="./script/changedDepartureHour.js"></script>
 <html>
     <title>Make new reservation</title>
 </head>
-<body>   <div id="background">
+<body>
+    <div id="background">
         <div class="container">
             <div class="col-md-12">
                 <h1>Make new reservation</h1>
@@ -39,7 +41,7 @@
                                     </td>
                                 </tr>
                                 <tr id="departureDateRow" style="display: none">
-                                    <td>Departure date</td><td><input type="text" id="datepicker" readonly="true"></td>  
+                                    <td>Departure date</td><td><input type="text" id="datepicker" placeholder="DD-MM-YYYY" readonly="true"></td>
                                 </tr>
                                 <tr id="nonResidentPassengersRow" style="display: none">
                                     <td>Passengers number(Non-residents)</td><td><input style="border: none;" name="numberOfPeople"></td>   
@@ -50,13 +52,13 @@
                                 <tr id="departureHoursRow" style="display: none">
                                     <td>Departure hour:</td>
                                     <td>
-                                        <select id="departureHoursSelectBox" required="required">
+                                        <select id="departureHoursSelectBox" required="required" onchange="resetSaveButton();">
                                         </select>
                                     </td>   
                                 </tr>
                             </tbody>
                         </table>
-                        <button type="submit" class="btn btn-info">Save reservation</button>
+                        <button id="saveReservationButton" disabled="disabled" type="submit" class="btn btn-info">Save reservation</button>
                     </form>
                 </div>
                 <div  style="position: relative;z-index: 9999;" class="col-md-12">
