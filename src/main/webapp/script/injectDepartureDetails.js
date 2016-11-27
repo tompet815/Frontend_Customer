@@ -8,7 +8,7 @@ function loadDepartureDetails(routeValue, dateValue) {
         },
         "success": function(data) {
             injectScriptWithDepartureDetails(data);
-            resetSelectBoxOptions();
+            resetDepartureHoursSelectBoxOptions();
         }
     });
 }
@@ -17,7 +17,7 @@ function injectScriptWithDepartureDetails(data){
     $('head').append('<script type="text/javascript" id="departureDetailsJSON" data-info=' + JSON.stringify(data) + '></script>');
 }
 
-function resetSelectBoxOptions(){
+function resetDepartureHoursSelectBoxOptions(){
     var hours = JSON.parse(document.getElementById("departureDetailsJSON").getAttribute("data-info"));
     var optionTags = "<option>- Please choose -</option>";
     for (var i = 0; i < hours.length; i++) {

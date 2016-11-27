@@ -42,12 +42,12 @@ public class MakeReservation extends HttpServlet {
         DepartureIdentifier di = new DepartureIdentifier(request.getIntHeader("departureId"));
         int residentsNb = request.getIntHeader("residentsNb");
         int nonResidentsNb = request.getIntHeader("nonResidentsNb");
-        int carsNb = request.getIntHeader("carsNb");
+        int smallCarsNb = request.getIntHeader("carsNb");
         int heavyMachineryNb = request.getIntHeader("heavyMachineryNb");
         int lorriesNb = request.getIntHeader("lorriesNb");
 
         rs = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb);
-//      rs = mock.saveReservation(di, nonResidentsNb, residentsNb, carsNb, heavyMachineryNb, lorriesNb);
+//      rs = mock.saveReservation(di, nonResidentsNb, residentsNb, smallCarsNb, heavyMachineryNb, lorriesNb);
         if (rs instanceof ReservationSummary) {
             request.setAttribute("hidden", "hidden");
             request.setAttribute("success", "Your reservation has been successfully saved!");

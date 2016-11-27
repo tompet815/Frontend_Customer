@@ -26,7 +26,7 @@
                 <h1>Make new reservation</h1>
                 <hr/>
                 <div  style="position: relative;z-index: 9999;" class="col-md-12" style="margin-top:15px" ${hidden} id="myreservation">
-                    <form method="post" class="form-inline">
+                    <form method="post" class="form-inline" id="reservationForm">
                         <table class="table" id="reservationTable" style="background-color: floralwhite">
                             <tbody>
                                 <tr>
@@ -43,11 +43,20 @@
                                 <tr id="departureDateRow" style="display: none">
                                     <td>Departure date</td><td><input type="text" id="datepicker" placeholder="DD-MM-YYYY" readonly="true"></td>
                                 </tr>
-                                <tr id="nonResidentPassengersRow" style="display: none">
-                                    <td>Passengers number(Non-residents)</td><td><input style="border: none;" name="numberOfPeople"></td>   
-                                </tr>
                                 <tr id="residentPassengersRow" style="display: none">
-                                    <td>Passenger number(Residents)</td><td><input style="border: none;" name="numberOfResidents"</td>   
+                                    <td>Passengers(residents)</td><td><input style="border: none;" name="residentsNbInput" type="number" min="0" value="0"</td>
+                                </tr>
+                                <tr id="nonResidentPassengersRow" style="display: none">
+                                    <td>Passengers(non-residents)</td><td><input style="border: none;" name="nonResidentsNbInput" type="number" min="0" value="0"></td>
+                                </tr>
+                                <tr id="smallCarsRow" style="display: none">
+                                    <td>Small cars</td><td><input style="border: none;" name="smallCarsNbInput" type="number" min="0" value="0"</td>
+                                </tr>
+                                <tr id="heavyMachineryRow" style="display: none">
+                                    <td>Heavy machinery</td><td><input style="border: none;" name="heavyMachineryNbInput" type="number" min="0" value="0"</td>
+                                </tr>
+                                <tr id="lorriesRow" style="display: none">
+                                    <td>Lorries</td><td><input style="border: none;" name="lorriesNbInput" type="number" min="0" value="0"</td>
                                 </tr>
                                 <tr id="departureHoursRow" style="display: none">
                                     <td>Departure hour:</td>

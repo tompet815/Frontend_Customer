@@ -5,17 +5,23 @@ function changedSelectedRoute() {
     var routeValue = selectBox.options[selectBox.selectedIndex].value;
     if (routeValue === '- Please choose -') {
         resetSaveButton();
-        document.getElementById("departureHoursRow").display = false;
-        document.getElementById("nonResidentPassengersRow").display = false;
-        document.getElementById("residentPassengersRow").display = false;
-        document.getElementById("departureHoursRow").display = false;
+        departureDateRow.style.display = 'none';
+        document.getElementById("residentPassengersRow").style.display = 'none';
+        document.getElementById("nonResidentPassengersRow").style.display = 'none';
+        document.getElementById("smallCarsRow").style.display = 'none';
+        document.getElementById("heavyMachineryRow").style.display = 'none';
+        document.getElementById("lorriesRow").style.display = 'none';
+        document.getElementById("departureHoursRow").style.display = 'none';
     } else {
         departureDateRow.style.display = '';
         dateValue = $('#datepicker').datepicker().val();
-        if(dateValue !== ''){
-            document.getElementById("nonResidentPassengersRow").display = true;
-            document.getElementById("residentPassengersRow").display = true;
-            document.getElementById("departureHoursRow").display = true;
+        if (dateValue !== '') {
+            document.getElementById("residentPassengersRow").style.display = '';
+            document.getElementById("nonResidentPassengersRow").style.display = '';
+            document.getElementById("smallCarsRow").style.display = '';
+            document.getElementById("heavyMachineryRow").style.display = '';
+            document.getElementById("lorriesRow").style.display = '';
+            document.getElementById("departureHoursRow").style.display = '';
             loadDepartureDetails(routeValue, dateValue);
         }
     }
