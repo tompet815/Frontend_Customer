@@ -1,6 +1,6 @@
 function loadDepartureDetails(routeValue, dateValue) {
     $.ajax({
-        "url": window.location.href + "?lineId=1&date=" + dateValue,
+        "url": "DeparturesDetails?lineId=1&date=" + dateValue,
         "type": "GET",
         "headers": {"Content-Type": "application/json"},
         "error": function () {

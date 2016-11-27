@@ -1,17 +1,12 @@
 package com.what.frontend_customer;
 
 import backendMock.DummyCustomerBackend;
-import com.google.gson.Gson;
-import generalstuff.DepartureDetail;
-import generalstuff.LineIdentifier;
+import generalstuff.DepartureIdentifier;
 import generalstuff.LineSummary;
+import generalstuff.ReservationSummary;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -24,80 +19,44 @@ import javax.servlet.http.HttpServletResponse;
 public class MakeReservation extends HttpServlet {
 
     DummyCustomerBackend mock = new DummyCustomerBackend();
-    Gson gson = new Gson();
 
-    //See reservation
+//  request to get Lines and render the page
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String lineId, dateString;
-        lineId = request.getParameter("lineId");
-        dateString = request.getParameter("date");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        Collection<LineSummary> lines;
+        lines = mock.getLines();
 
-        if (lineId != null && dateString != null) {
-//            request to get departure details
-            DateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
+        request.setAttribute("lines", lines);
 
-            try {
-                Date date = formatter.parse(dateString);
-//                Collection<DepartureDetail> departures;
-//                departures = mock.getDepartures(new LineIdentifier(request.getParameter("lineId")), date);
-//              I will assume that departures is an Array with departure dates:
-                String[] hours = {"11:45","12:45","13:45"};
-                String hoursString = gson.toJson(hours);
-
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-                response.getWriter().write(hoursString);
-
-            } catch (ParseException ex) {
-                Logger.getLogger(MakeReservation.class.getName()).log(Level.SEVERE, null, ex);
-                out.println("<h2>" + ex.getMessage() + "</h2>");
-                out.print("<hr/><pre>");
-                ex.printStackTrace(out);
-                out.println("</pre>");
-            }
-        } else {
-//          request to get lines
-            Collection<LineSummary> lines;
-            lines = mock.getLines();
-            System.out.println("ma-ta!");
-            System.out.println(mock.getDepartures(new LineIdentifier(request.getParameter("lineId")), new Date()).size());
-
-            request.setAttribute("lines", lines);
+        try {
             request.getRequestDispatcher("MakeReservation.jsp").forward(request, response);
+        } catch (ServletException | IOException ex1) {
+            Logger.getLogger(MakeReservation.class.getName()).log(Level.SEVERE, null, ex1);
         }
     }
 
+//  request to create new Reservation
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("here you gotta create the reservation!");
-//        PrintWriter out = response.getWriter();
-//        String reservationNo, numberOfPeople, numberOfResidents;
-//        try {
-//
-//            reservationNo = request.getParameter("reservationno");
-//            numberOfPeople = request.getParameter("numberOfPeople");
-//            numberOfResidents = request.getParameter("numberOfResidents");
-//            if (reservationNo == null) {
-//                request.setAttribute("hidden", "hidden");
-//                request.setAttribute("error", "Error. The reservation number is required");
-//            } else {
-//
-//                int intResNo = Integer.parseInt(reservationNo);
-//                int intNumberOfPeople = Integer.parseInt(numberOfPeople);
-//                int intNumberOfResidents = Integer.parseInt(numberOfResidents);
-//                mock.updateReservation(new ReservationIdentifier(intResNo), null, intNumberOfPeople, intNumberOfResidents, false);
-//                request.setAttribute("hidden", "hidden");
-//                request.setAttribute("success", "Your reservation has successfully updated.");
-//            }
-//            request.getRequestDispatcher("editReservation2.jsp").forward(request, response);
-//
-//        } catch (Exception e) {
-//            out.println("<h2>" + e.getMessage() + "</h2>");
-//            out.print("<hr/><pre>");
-//            e.printStackTrace(out);
-//            out.println("</pre>");
-//        }
+        ReservationSummary rs;
+        DepartureIdentifier di = new DepartureIdentifier(request.getIntHeader("departureId"));
+        int residentsNb = request.getIntHeader("residentsNb");
+        int nonResidentsNb = request.getIntHeader("nonResidentsNb");
+        int carsNb = request.getIntHeader("carsNb");
+        int heavyMachineryNb = request.getIntHeader("heavyMachineryNb");
+        int lorriesNb = request.getIntHeader("lorriesNb");
+
+        rs = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb);
+//      rs = mock.saveReservation(di, nonResidentsNb, residentsNb, carsNb, heavyMachineryNb, lorriesNb);
+        if (rs instanceof ReservationSummary) {
+            request.setAttribute("hidden", "hidden");
+            request.setAttribute("success", "Your reservation has been successfully saved!");
+            request.getRequestDispatcher("MakeReservation.jsp").forward(request, response);
+        } else {
+            request.setAttribute("hidden", "hidden");
+            request.setAttribute("failure", "Your reservation failed to save!");
+            request.getRequestDispatcher("MakeReservation.jsp").forward(request, response);
+        }
+
     }
 }
