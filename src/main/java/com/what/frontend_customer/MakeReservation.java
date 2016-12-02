@@ -46,7 +46,7 @@ public class MakeReservation extends HttpServlet {
         int heavyMachineryNb = request.getIntHeader("heavyMachineryNb");
         int lorriesNb = request.getIntHeader("lorriesNb");
 
-        rs = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb);
+        rs = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb, "some name");
 //      rs = mock.saveReservation(di, nonResidentsNb, residentsNb, smallCarsNb, heavyMachineryNb, lorriesNb);
         if (rs instanceof ReservationSummary) {
             request.setAttribute("hidden", "hidden");
