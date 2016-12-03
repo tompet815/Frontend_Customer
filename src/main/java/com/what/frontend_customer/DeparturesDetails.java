@@ -31,7 +31,7 @@ public class DeparturesDetails extends HttpServlet {
         Date date;
         try {
             date = formatter.parse(dateString);
-            LineIdentifier lineId = new LineIdentifier(request.getParameter("lineId"));
+            LineIdentifier lineId = new LineIdentifier(request.getIntHeader("lineId"));
             Collection<DepartureDetail> departures = mock.getDepartures(lineId, date);
             System.out.println(departures);
             
