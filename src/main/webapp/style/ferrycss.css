@@ -5,6 +5,9 @@
 #reservationTable tr > td:first-child{
     width: 50%;
 }
+#bottomButtonsTable tr > td:first-child{
+    width: 50%;
+}
 .buttons{
     padding-top:100px;
     text-align: center;

@@ -16,6 +16,7 @@
     <script src="./script/datePickerAction.js"></script>
     <script src="./script/injectDepartureDetails.js"></script>
     <script src="./script/changedDepartureHour.js"></script>
+    <script type="text/javascript" id="linesDetailsJSON" data-info=${linesDetails}></script>
 <html>
     <title>Make new reservation</title>
 </head>
@@ -29,7 +30,10 @@
                     <form method="post" class="form-inline" id="reservationForm">
                         <table class="table" id="reservationTable" style="background-color: floralwhite">
                             <tbody>
-                                <tr>
+                                <tr id="reservationIDRow" style="display: ${hideElements}">
+                                    <td>Reservation ID</td><td>${reservationId}</td>
+                                </tr>
+                                <tr id="routesRow">
                                     <td>Route</td>
                                     <td>
                                         <select id="routeSelectBox" required="required" onchange="changedSelectedRoute();">
@@ -40,41 +44,55 @@
                                         </select>
                                     </td>
                                 </tr>
-                                <tr id="departureDateRow" style="display: none">
+                                <tr id="departureDateRow" style="display: ${hideElements}">
                                     <td>Departure date</td><td><input type="text" id="datepicker" placeholder="DD-MM-YYYY" readonly="true"></td>
                                 </tr>
-                                <tr id="residentPassengersRow" style="display: none">
+                                <tr id="residentPassengersRow" style="display: ${hideElements}">
                                     <td>Passengers(residents)</td><td><input style="border: none;" name="residentsNbInput" type="number" min="0" value="0"</td>
                                 </tr>
-                                <tr id="nonResidentPassengersRow" style="display: none">
+                                <tr id="nonResidentPassengersRow" style="display: ${hideElements}">
                                     <td>Passengers(non-residents)</td><td><input style="border: none;" name="nonResidentsNbInput" type="number" min="0" value="0"></td>
                                 </tr>
-                                <tr id="smallCarsRow" style="display: none">
+                                <tr id="smallCarsRow" style="display: ${hideElements}">
                                     <td>Small cars</td><td><input style="border: none;" name="smallCarsNbInput" type="number" min="0" value="0"</td>
                                 </tr>
-                                <tr id="heavyMachineryRow" style="display: none">
+                                <tr id="heavyMachineryRow" style="display: ${hideElements}">
                                     <td>Heavy machinery</td><td><input style="border: none;" name="heavyMachineryNbInput" type="number" min="0" value="0"</td>
                                 </tr>
-                                <tr id="lorriesRow" style="display: none">
+                                <tr id="lorriesRow" style="display: ${hideElements}">
                                     <td>Lorries</td><td><input style="border: none;" name="lorriesNbInput" type="number" min="0" value="0"</td>
                                 </tr>
-                                <tr id="departureHoursRow" style="display: none">
+                                <tr id="departureHoursRow" style="display: ${hideElements}">
                                     <td>Departure hour:</td>
                                     <td>
                                         <select id="departureHoursSelectBox" required="required" onchange="resetSaveButton();">
                                         </select>
                                     </td>   
                                 </tr>
+                                <tr id="priceRow" style="display: ${hideElements}">
+                                    <td>Price</td><td>${price}</td>
+                                </tr>
                             </tbody>
                         </table>
-                        <button id="saveReservationButton" disabled="disabled" type="submit" class="btn btn-info">Save reservation</button>
+                        <table class="table" id="bottomButtonsTable">
+                            <tr>
+                                <td>
+                                    <c:if test="${empty success}">
+                                        <button id="saveReservationButton" disabled="disabled" type="submit" class="btn btn-info">Save reservation</button>
+                                    </c:if>
+                                </td>
+                                <td>
+                                    <a href="./" class="btn btn-info">Back to Home</a>
+                                </td>
+                            </tr>
+                        </table>
                     </form>
-                </div>
-                <div  style="position: relative;z-index: 9999;" class="col-md-12">
-
-                    <div class="pull-right">
-                        <a href="./"><button class="btn btn-info" type="button">Back to Home <i class="fa fa-home" aria-hidden="true"></i></button></a>
-                    </div>
+                    <c:if test="${not empty error}">
+                        <span id="errorMsg" style="color: red; margin-top: 10px; display:block">${error}</span>
+                    </c:if>
+                    <c:if test="${not empty success}">
+                        <span id="successMsg" style="color: green; margin-top: 10px; display:block">${success}</span>
+                    </c:if>
                 </div>
             </div>
         </div>

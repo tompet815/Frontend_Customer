@@ -8,9 +8,7 @@ $(function () {
             document.getElementById("lorriesRow").style.display = '';
             document.getElementById("departureHoursRow").style.display = '';
 
-            var routeSelectBox = document.getElementById("routeSelectBox");
-            var routeValue = routeSelectBox.options[routeSelectBox.selectedIndex].value;
-            loadDepartureDetails(routeValue, dateValue);
+            loadDepartureDetails(dateValue);
         },
         dateFormat: "dd-mm-yy",
         minDate: +0 //you do not want to show previous date.

@@ -1,9 +1,7 @@
 
 function changedSelectedRoute() {
-    var selectBox = document.getElementById("routeSelectBox");
     var departureDateRow = document.getElementById("departureDateRow");
-    var routeValue = selectBox.options[selectBox.selectedIndex].value;
-    if (routeValue === '- Please choose -') {
+    if (document.getElementById("routeSelectBox").selectedIndex === 0) {
         resetSaveButton();
         departureDateRow.style.display = 'none';
         document.getElementById("residentPassengersRow").style.display = 'none';
@@ -22,7 +20,7 @@ function changedSelectedRoute() {
             document.getElementById("heavyMachineryRow").style.display = '';
             document.getElementById("lorriesRow").style.display = '';
             document.getElementById("departureHoursRow").style.display = '';
-            loadDepartureDetails(routeValue, dateValue);
+            loadDepartureDetails(dateValue);
         }
     }
 }

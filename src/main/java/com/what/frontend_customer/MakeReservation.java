@@ -1,6 +1,7 @@
 package com.what.frontend_customer;
 
 import backendMock.DummyCustomerBackend;
+import com.google.gson.Gson;
 import generalstuff.DepartureIdentifier;
 import generalstuff.LineSummary;
 import generalstuff.ReservationSummary;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MakeReservation extends HttpServlet {
 
     DummyCustomerBackend mock = new DummyCustomerBackend();
+    Gson gson = new Gson();
 
 //  request to get Lines and render the page
     @Override
@@ -26,8 +28,9 @@ public class MakeReservation extends HttpServlet {
         Collection<LineSummary> lines;
         lines = mock.getLines();
 
+        request.setAttribute("hideElements", "none");
         request.setAttribute("lines", lines);
-
+        request.setAttribute("linesDetails", gson.toJson(lines));
         try {
             request.getRequestDispatcher("MakeReservation.jsp").forward(request, response);
         } catch (ServletException | IOException ex1) {
@@ -45,18 +48,20 @@ public class MakeReservation extends HttpServlet {
         int smallCarsNb = request.getIntHeader("carsNb");
         int heavyMachineryNb = request.getIntHeader("heavyMachineryNb");
         int lorriesNb = request.getIntHeader("lorriesNb");
+        String customerName = request.getHeader("customerName");
 
-        rs = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb);
+        rs = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb, customerName);
 //      rs = mock.saveReservation(di, nonResidentsNb, residentsNb, smallCarsNb, heavyMachineryNb, lorriesNb);
         if (rs instanceof ReservationSummary) {
-            request.setAttribute("hidden", "hidden");
+            System.out.println(rs.getId());
             request.setAttribute("success", "Your reservation has been successfully saved!");
-            request.getRequestDispatcher("MakeReservation.jsp").forward(request, response);
+            request.setAttribute("hideElements", "");
+            request.setAttribute("reservationId", Integer.toString(rs.getId()));
+            request.setAttribute("price", "over 9000!");
         } else {
-            request.setAttribute("hidden", "hidden");
-            request.setAttribute("failure", "Your reservation failed to save!");
-            request.getRequestDispatcher("MakeReservation.jsp").forward(request, response);
+            request.setAttribute("hideElements", "none");
+            request.setAttribute("error", "Your reservation failed to save!");
         }
-
+        request.getRequestDispatcher("MakeReservation.jsp").forward(request, response);
     }
 }

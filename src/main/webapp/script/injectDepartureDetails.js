@@ -1,6 +1,9 @@
-function loadDepartureDetails(routeValue, dateValue) {
+function loadDepartureDetails(dateValue) {
+    var lines = JSON.parse(document.getElementById("linesDetailsJSON").getAttribute("data-info"));
+    var selectedLineID = lines[document.getElementById("routeSelectBox").selectedIndex - 1].id;
+    
     $.ajax({
-        "url": "DeparturesDetails?lineId=1&date=" + dateValue,
+        "url": "DeparturesDetails?lineId=" + selectedLineID + "&date=" + dateValue,
         "type": "GET",
         "headers": {"Content-Type": "application/json"},
         "error": function () {
