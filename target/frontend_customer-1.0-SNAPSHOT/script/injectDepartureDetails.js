@@ -17,7 +17,7 @@ function loadDepartureDetails() {
 }
 
 function injectScriptWithDepartureDetails(data) {
-    document.getElementById("departureDetailsJSON").remove();
+    $("#departureDetailsJSON").remove();
     $('head').append('<script type="text/javascript" id="departureDetailsJSON" data-info=' + JSON.stringify(data) + '></script>');
 }
 
@@ -26,7 +26,7 @@ function resetDepartureHoursSelectBoxOptions() {
     var optionTags = "<option>- Please choose -</option>";
     for (var i = 0; i < departures.length; i++) {
         var d = new Date(departures[i].departureTimeInMilis);
-        optionTags += "<option>" + d.toTimeString().substring(0,5) + "</option>";
+        optionTags += "<option>" + d.toTimeString().substring(0, 5) + "</option>";
     }
     document.getElementById("departureHoursSelectBox").innerHTML = optionTags;
 }

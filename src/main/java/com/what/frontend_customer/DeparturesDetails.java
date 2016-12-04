@@ -34,7 +34,7 @@ public class DeparturesDetails extends HttpServlet {
 
             for (DepartureDetail d : mock.getDepartures(lineId, date)) {
                 departuresForWebsite.add(new DepartureDetailsDTO(d.getPricePerPerson(), d.getPricePerCar(), d.getPricePerLorry(), d.getPricePerHeavy(), d.getPricePerResident(),
-                        d.getDepartureTime().getTime(), d.getRemainingPeople(), d.getRemainingCars(), d.getRemainingLorries(), d.getRemainingHeavy(), d.getLineSummary(), d.getFerrySummary()));
+                        d.getDepartureTime().getTime(), d.getRemainingPeople(), d.getRemainingCars(), d.getRemainingLorries(), d.getRemainingHeavy(), d.getLineSummary(), d.getFerrySummary(), d.getId()));
             }
 
             response.setContentType("application/json");

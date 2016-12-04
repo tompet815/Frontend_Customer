@@ -4,12 +4,13 @@ import generalstuff.FerrySummary;
 import generalstuff.LineSummary;
 
 public class DepartureDetailsDTO {
+
     private final long pricePerPerson, pricePerCar, pricePerLorry, pricePerHeavy, pricePerResident, departureTimeInMilis;
-    private final int remainingPeople, remainingCars, remainingLorries, remainingHeavy;
+    private final int remainingPeople, remainingCars, remainingLorries, remainingHeavy, id;
     private final LineSummary lineSummary;
     private final FerrySummary ferrySummary;
 
-    public DepartureDetailsDTO(long pricePerPerson, long pricePerCar, long pricePerLorry, long pricePerHeavy, long pricePerResident, long departureTimeInMilis, int remainingPeople, int remainingCars, int remainingLorries, int remainingHeavy, LineSummary lineSummary, FerrySummary ferrySummary) {
+    public DepartureDetailsDTO(long pricePerPerson, long pricePerCar, long pricePerLorry, long pricePerHeavy, long pricePerResident, long departureTimeInMilis, int remainingPeople, int remainingCars, int remainingLorries, int remainingHeavy, LineSummary lineSummary, FerrySummary ferrySummary, Integer id) {
         this.pricePerPerson = pricePerPerson;
         this.pricePerCar = pricePerCar;
         this.pricePerLorry = pricePerLorry;
@@ -22,6 +23,7 @@ public class DepartureDetailsDTO {
         this.remainingHeavy = remainingHeavy;
         this.lineSummary = lineSummary;
         this.ferrySummary = ferrySummary;
+        this.id = id;
     }
 
     public long getPricePerPerson() {
@@ -71,5 +73,9 @@ public class DepartureDetailsDTO {
     public FerrySummary getFerrySummary() {
         return ferrySummary;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
 }

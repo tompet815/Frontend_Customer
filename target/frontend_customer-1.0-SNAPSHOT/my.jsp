@@ -69,7 +69,7 @@
                                 <td>Heavy machinery</td><td>${detail.numberOfHeavyMachinery}</td>   
                             </tr>
                             <tr>
-                                <td>Total price</td><td></td>   
+                                <td>Total price</td><td>${detail.totalPrice}</td>   
                             </tr>
                         </tbody>
                     </table>
