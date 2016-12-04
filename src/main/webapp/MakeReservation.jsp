@@ -45,7 +45,7 @@
                                     </td>
                                 </tr>
                                 <tr id="departureDateRow" style="display: ${hideElements}">
-                                    <td>Departure date</td><td><input type="text" id="datepicker" placeholder="DD-MM-YYYY" readonly="true"></td>
+                                    <td>Departure date</td><td><input type="text" id="datepicker" placeholder="click to choose" readonly="true"></td>
                                 </tr>
                                 <tr id="residentPassengersRow" style="display: ${hideElements}">
                                     <td>Passengers(residents)</td><td><input style="border: none;" name="residentsNbInput" type="number" min="0" value="0"</td>

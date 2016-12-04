@@ -1,13 +1,12 @@
 package com.what.frontend_customer;
 
-import backendMock.DummyCustomerBackend;
+import com.what.frontend_customer.to_delete.DummyCustomerBackend;
 import com.google.gson.Gson;
+import dtos_for_website.DepartureDetailsDTO;
 import generalstuff.DepartureDetail;
 import generalstuff.LineIdentifier;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.logging.Level;
@@ -26,24 +25,21 @@ public class DeparturesDetails extends HttpServlet {
 //  request to get departure details
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        String dateString = request.getParameter("date");
-        DateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
+        Long dateMillis = Long.parseLong(request.getParameter("date"));
         Date date;
         try {
-            date = formatter.parse(dateString);
-            LineIdentifier lineId = new LineIdentifier(request.getIntHeader("lineId"));
-            Collection<DepartureDetail> departures = mock.getDepartures(lineId, date);
-            System.out.println(departures);
-            
-//            I will assume that departures is an Array with departure dates:
-            String[] hours = {"11:45", "12:45", "13:45"};
-            String hoursString = gson.toJson(hours);
+            date = new Date(dateMillis);
+            LineIdentifier lineId = new LineIdentifier(Integer.parseInt(request.getParameter("lineId")));
+            Collection<DepartureDetailsDTO> departuresForWebsite = new ArrayList<>();
+
+            for (DepartureDetail d : mock.getDepartures(lineId, date)) {
+                departuresForWebsite.add(new DepartureDetailsDTO(d.getPricePerPerson(), d.getPricePerCar(), d.getPricePerLorry(), d.getPricePerHeavy(), d.getPricePerResident(),
+                        d.getDepartureTime().getTime(), d.getRemainingPeople(), d.getRemainingCars(), d.getRemainingLorries(), d.getRemainingHeavy(), d.getLineSummary(), d.getFerrySummary()));
+            }
 
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(hoursString);
-        } catch (ParseException ex) {
-            Logger.getLogger(DeparturesDetails.class.getName()).log(Level.SEVERE, null, ex);
+            response.getWriter().write(gson.toJson(departuresForWebsite));
         } catch (IOException ex) {
             Logger.getLogger(DeparturesDetails.class.getName()).log(Level.SEVERE, null, ex);
         }

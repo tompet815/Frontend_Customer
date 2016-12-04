@@ -1,6 +1,6 @@
 package com.what.frontend_customer;
 
-import backendMock.DummyCustomerBackend;
+import com.what.frontend_customer.to_delete.DummyCustomerBackend;
 import com.google.gson.Gson;
 import generalstuff.DepartureIdentifier;
 import generalstuff.LineSummary;
@@ -42,7 +42,7 @@ public class MakeReservation extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ReservationSummary rs;
-        DepartureIdentifier di = new DepartureIdentifier(request.getIntHeader("departureId"));
+        DepartureIdentifier di = new DepartureIdentifier(Integer.parseInt(request.getParameter("departureId")));
         int residentsNb = request.getIntHeader("residentsNb");
         int nonResidentsNb = request.getIntHeader("nonResidentsNb");
         int smallCarsNb = request.getIntHeader("carsNb");

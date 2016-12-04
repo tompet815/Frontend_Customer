@@ -20,7 +20,7 @@ function changedSelectedRoute() {
             document.getElementById("heavyMachineryRow").style.display = '';
             document.getElementById("lorriesRow").style.display = '';
             document.getElementById("departureHoursRow").style.display = '';
-            loadDepartureDetails(dateValue);
+            loadDepartureDetails();
         }
     }
 }

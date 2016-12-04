@@ -1,6 +1,6 @@
 $(function () {
     $("#datepicker").datepicker({
-        onSelect: function (dateValue) {
+        onSelect: function () {
             document.getElementById("residentPassengersRow").style.display = '';
             document.getElementById("nonResidentPassengersRow").style.display = '';
             document.getElementById("smallCarsRow").style.display = '';
@@ -8,9 +8,9 @@ $(function () {
             document.getElementById("lorriesRow").style.display = '';
             document.getElementById("departureHoursRow").style.display = '';
 
-            loadDepartureDetails(dateValue);
+            loadDepartureDetails();
         },
-        dateFormat: "dd-mm-yy",
+        dateFormat: "M d, yy",
         minDate: +0 //you do not want to show previous date.
     });
 });
