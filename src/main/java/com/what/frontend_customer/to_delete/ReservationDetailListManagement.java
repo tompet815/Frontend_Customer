@@ -14,19 +14,19 @@ public class ReservationDetailListManagement {
         nextIdreservationDetail = 0;
     }
 
-    public void addReservationDetail( ReservationDetail reservationDetail ) {
-        reservationDetailMap.put( getNextIdReservationDetail(), reservationDetail );
+    public void addReservationDetail(ReservationDetail reservationDetail) {
+        reservationDetailMap.put(new Long(reservationDetail.getId()), reservationDetail);
     }
 
     public Map<Long, ReservationDetail> getReservationDetails() {
         return reservationDetailMap;
     }
 
-    public void removeReservationDetail( Long id ) {
-        reservationDetailMap.remove( id );
+    public void removeReservationDetail(Long id) {
+        reservationDetailMap.remove(id);
     }
 
-    private long getNextIdReservationDetail() {
+    public long getNextIdReservationDetail() {
         return ++nextIdreservationDetail;
     }
 }

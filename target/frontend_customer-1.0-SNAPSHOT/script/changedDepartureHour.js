@@ -4,21 +4,18 @@ function resetSaveButton() {
 //            some more validation from the passengers & cars
             document.getElementById("departureHoursSelectBox").selectedIndex !== 0) {
 
-        var selectedH = document.getElementById("routeSelectBox").value;
+        var selectedH = document.getElementById("departureHoursSelectBox").value;
         var departures = JSON.parse(document.getElementById("departureDetailsJSON").getAttribute("data-info"));
-        var selectedDepartureID;
         for (var i = 0; i < departures.length; i++) {
             var d = new Date(departures[i].departureTimeInMilis);
             if (d.toTimeString().substring(0, 5) === selectedH) {
-                selectedDepartureID = departures[i].id;
+                var input = $("<input>")
+                        .attr("type", "hidden")
+                        .attr("name", "departureId").val(departures[i].id.toString());
+                $('#reservationForm').append($(input));
                 break;
             }
         }
-
-        var input = $("<input>")
-                .attr("type", "hidden")
-                .attr("name", "departureId").val(selectedDepartureID);
-        $('#reservationForm').append($(input));
 
         document.getElementById("saveReservationButton").disabled = false;
     } else {

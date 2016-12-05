@@ -1,6 +1,6 @@
 package com.what.frontend_customer;
 
-import com.what.frontend_customer.to_delete.DummyCustomerBackend;
+import backendMock.DummyCustomerBackend;
 import generalstuff.*;
 import java.io.IOException;
 import java.io.PrintWriter;

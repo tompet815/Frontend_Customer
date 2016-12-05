@@ -1,6 +1,6 @@
 package com.what.frontend_customer;
 
-import com.what.frontend_customer.to_delete.DummyCustomerBackend;
+import backendMock.DummyCustomerBackend;
 import com.google.gson.Gson;
 import generalstuff.DepartureIdentifier;
 import generalstuff.LineSummary;
