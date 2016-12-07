@@ -4,7 +4,7 @@ import backendMock.DummyCustomerBackend;
 import com.google.gson.Gson;
 import generalstuff.DepartureIdentifier;
 import generalstuff.LineSummary;
-import generalstuff.ReservationSummary;
+import generalstuff.ReservationDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
@@ -41,7 +41,7 @@ public class MakeReservation extends HttpServlet {
 //  request to create new Reservation
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ReservationSummary rs;
+        ReservationDetail rs;
         DepartureIdentifier di = new DepartureIdentifier(Integer.parseInt(request.getParameter("departureId")));
         int residentsNb = request.getIntHeader("residentsNb");
         int nonResidentsNb = request.getIntHeader("nonResidentsNb");
@@ -52,8 +52,9 @@ public class MakeReservation extends HttpServlet {
 
         rs = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb, customerName);
 //      rs = mock.saveReservation(di, nonResidentsNb, residentsNb, smallCarsNb, heavyMachineryNb, lorriesNb);
-        if (rs instanceof ReservationSummary) {
+        if (rs instanceof ReservationDetail) {
             System.out.println(rs.getId());
+            System.out.println(mock.reservationDetailListManagement.getReservationDetails().values().size());
             request.setAttribute("success", "Your reservation has been successfully saved!");
             request.setAttribute("hideElements", "");
             request.setAttribute("reservationId", Integer.toString(rs.getId()));

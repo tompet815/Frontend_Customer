@@ -17,8 +17,10 @@ function resetSaveButton() {
             }
         }
 
+        document.getElementById("customerNameRow").style.display = '';
         document.getElementById("saveReservationButton").disabled = false;
     } else {
+        document.getElementById("customerNameRow").style.display = 'none';
         document.getElementById("saveReservationButton").disabled = true;
     }
 }

@@ -72,6 +72,9 @@
                                     <tr id="priceRow" style="display: ${hideElements}">
                                         <td>Price</td><td>${price}</td>
                                     </tr>
+                                    <tr id="customerNameRow" style="display: ${hideElements}">
+                                        <td>Your name</td><td><input style="border: none;" name="customerName"</td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <table class="table" id="bottomButtonsTable">
