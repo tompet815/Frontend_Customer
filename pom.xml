@@ -65,8 +65,7 @@
         <dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>BackendMock</artifactId>
-            <!--<version>1.0-20161207.000638-18</version>-->
-            <version>1.0-20161205.005504-17</version>
+            <version>1.0-20161207.102335-19</version>
             <type>jar</type>
         </dependency>
     </dependencies>  
