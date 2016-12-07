@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import generalstuff.DepartureIdentifier;
 import generalstuff.LineSummary;
 import generalstuff.ReservationDetail;
+import generalstuff.ReservationIdentifier;
+import generalstuff.ReservationSummary;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
@@ -41,28 +43,38 @@ public class MakeReservation extends HttpServlet {
 //  request to create new Reservation
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ReservationSummary rs;
         ReservationDetail rd;
         DepartureIdentifier di = new DepartureIdentifier(Integer.parseInt(request.getParameter("departureId")));
-        int residentsNb = request.getIntHeader("residentsNb");
-        int nonResidentsNb = request.getIntHeader("nonResidentsNb");
-        int smallCarsNb = request.getIntHeader("carsNb");
-        int heavyMachineryNb = request.getIntHeader("heavyMachineryNb");
-        int lorriesNb = request.getIntHeader("lorriesNb");
-        String customerName = request.getHeader("customerName");
+        int residentsNb = Integer.parseInt(request.getParameter("residentsNbInput"));
+        int nonResidentsNb = Integer.parseInt(request.getParameter("nonResidentsNbInput"));
+        int smallCarsNb = Integer.parseInt(request.getParameter("smallCarsNbInput"));
+        int heavyMachineryNb = Integer.parseInt(request.getParameter("heavyMachineryNbInput"));
+        int lorriesNb = Integer.parseInt(request.getParameter("lorriesNbInput"));
+        String customerName = request.getParameter("customerName");
+        Boolean hasSmallCar = true;
+        if (smallCarsNb == 0) {
+            hasSmallCar = false;
+        }
 
-        rd = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb, customerName);
-//      rs = mock.saveReservation(di, nonResidentsNb, residentsNb, smallCarsNb, heavyMachineryNb, lorriesNb);
-        if (rd instanceof ReservationDetail) {
-            System.out.println(rd.getId());
-            System.out.println(mock.reservationDetailListManagement.getReservationDetails().values().size());
-            request.setAttribute("success", "Your reservation has been successfully saved!");
-            request.setAttribute("hideElements", "");
-            request.setAttribute("reservationId", Integer.toString(rd.getId()));
-            request.setAttribute("price", "over 9000!");
+//        rd = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb, customerName);
+        rs = mock.saveReservation(di, nonResidentsNb, residentsNb, hasSmallCar, heavyMachineryNb, lorriesNb, customerName);
+        if (rs instanceof ReservationSummary) {
+            System.out.println(rs.getId());
+//            request.setAttribute("success", "Your reservation has been successfully saved!");
+//            request.setAttribute("hideElements", "");
+//            request.setAttribute("reservationId", Integer.toString(rd.getId()));
+//            request.setAttribute("price", "over 9000!");
+            rd = mock.getReservation(new ReservationIdentifier(rs.getId()));
+            request.setAttribute("detail", rd);
+            request.setAttribute("hidden", "");
+            request.setAttribute("reservationno", rd.getId());
+            System.out.println(request);
+            request.getRequestDispatcher("my.jsp").forward(request, response);
         } else {
             request.setAttribute("hideElements", "none");
             request.setAttribute("error", "Your reservation failed to save!");
+            request.getRequestDispatcher("MakeReservation.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("MakeReservation.jsp").forward(request, response);
     }
 }
