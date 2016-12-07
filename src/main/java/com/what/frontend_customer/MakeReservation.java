@@ -41,7 +41,7 @@ public class MakeReservation extends HttpServlet {
 //  request to create new Reservation
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ReservationDetail rs;
+        ReservationDetail rd;
         DepartureIdentifier di = new DepartureIdentifier(Integer.parseInt(request.getParameter("departureId")));
         int residentsNb = request.getIntHeader("residentsNb");
         int nonResidentsNb = request.getIntHeader("nonResidentsNb");
@@ -50,14 +50,14 @@ public class MakeReservation extends HttpServlet {
         int lorriesNb = request.getIntHeader("lorriesNb");
         String customerName = request.getHeader("customerName");
 
-        rs = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb, customerName);
+        rd = mock.saveReservation(di, nonResidentsNb, residentsNb, true, heavyMachineryNb, lorriesNb, customerName);
 //      rs = mock.saveReservation(di, nonResidentsNb, residentsNb, smallCarsNb, heavyMachineryNb, lorriesNb);
-        if (rs instanceof ReservationDetail) {
-            System.out.println(rs.getId());
+        if (rd instanceof ReservationDetail) {
+            System.out.println(rd.getId());
             System.out.println(mock.reservationDetailListManagement.getReservationDetails().values().size());
             request.setAttribute("success", "Your reservation has been successfully saved!");
             request.setAttribute("hideElements", "");
-            request.setAttribute("reservationId", Integer.toString(rs.getId()));
+            request.setAttribute("reservationId", Integer.toString(rd.getId()));
             request.setAttribute("price", "over 9000!");
         } else {
             request.setAttribute("hideElements", "none");
