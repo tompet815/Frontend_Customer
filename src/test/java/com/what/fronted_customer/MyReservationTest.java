@@ -46,7 +46,7 @@ public class MyReservationTest {
         request = mock(HttpServletRequest.class);
         response = mock(HttpServletResponse.class);
         response_writer = new StringWriter();
-        when(mockbackend.getReservation((ReservationIdentifier) anyObject())).thenReturn(new ReservationDetail(new Date(), null, "testName", 0, 10, 0, 0, 0, 1000, 1));
+        when(mockbackend.getReservation((ReservationIdentifier) anyObject())).thenReturn(new ReservationDetail(new Date(), null, "testName", 10, 0, 0, 0, 0, 1000, 1));
         when(response.getWriter()).thenReturn(new PrintWriter(response_writer));
     }
 
