@@ -4,16 +4,20 @@
 This is created for the assignment of the course "Development of Large Systems" at CPHbusiness.  
 
 Cluster I has agreed on a contract and we implemented against the contract.  
-The code contract is found [here](https://github.com/Legendslayer/FerryProjectContract)  
-The tool box is found [NEED TO LINK]() 
+
+[The link to code contract](https://github.com/Legendslayer/FerryProjectContract)  
+[The link to toolbox](https://github.com/tompet815/toolbox) 
   
 We have created the backend mock projects and frontend project.  
-The backend mock has a dependency of the contract project and the frontend has a dependency of the dummy backend project.  
+As the digram below shows, the backend mock has a dependency of the contract project and the frontend has a dependency of the dummy backend project.  
+
+![Dependencies](/images/Dependencies.png)
+
 The links to the projects are following;  
+
 [Frontend project](https://github.com/tompet815/frontend_customer)  
 [Backend mock project](https://github.com/Madalina1994/BackendMockFerry)  
 
-![dependency]("Dependencies between projects")
 
 ## Setup overview
   
@@ -23,7 +27,7 @@ Here we build the projects in order to use them as dependencies.
 This is the artifactory url: [http://104.236.119.119:8082/artifactory/](http://104.236.119.119:8082/artifactory/webapp/home.html?5).  
 Here we store the jar files built by Jenkins. The pom file references the versions of the dependency from the artifactory.
 
-![deployment]("Deployment diagram")
+![CI/CD chain](/images/CI.png)
 
 The diagram above shows our deployment scenario. We push our code to Github, and build on Jenkins server.  
 After successful build, we deploy jar/war files on Artifactory.  
@@ -67,7 +71,7 @@ We start the contract test from CustomerContract test in DummyBackendTest.
 ![sample code of testing]("Injection of DummyBackend")
 
 
-Please look at the diagram for our verification structure.
+The diagram below shows our verification structure.
 
-![verification]("Diagram of verification")
+![verification](/images/Verification.png)
 
