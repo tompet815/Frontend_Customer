@@ -82,7 +82,7 @@ public class MyReservation extends HttpServlet {
                 int intResNo = Integer.parseInt(reservationNo);
                 if (mock.deleteReservation(new ReservationIdentifier(intResNo))) {
                     request.setAttribute("hidden", "hidden");
-                    request.setAttribute("success", "Your reservation has successfully cancelled.");
+                    request.setAttribute("success", "Your reservation has successfully deleted.");
                 }
                 else {
                     request.setAttribute("hidden", "");
