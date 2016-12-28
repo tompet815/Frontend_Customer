@@ -68,9 +68,16 @@ We cannot run the contract test by itself.
 We should tell contract test which class it should test against. In our case, DummyCustomerBackend. 
 We start the contract test from CustomerContract test in DummyBackendTest. 
 
-![sample code of testing]("Injection of DummyBackend")
-
-
+```java
+public class CustomerContractTest {    
+    
+    @BeforeClass
+    public static void setUpClass() {
+        CustomerInterfaceHolder.customerInterface =new DummyCustomerBackend();
+         }   
+   
+}
+```
 The diagram below shows our verification structure.
 
 ![verification](/images/Verification.png)
