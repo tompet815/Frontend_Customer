@@ -1,4 +1,4 @@
-#  Assignment of Development of Large Systems  (DRAFT)
+#  Assignment of Development of Large Systems
 ## by group What?
   
 This is created for the assignment of the course "Development of Large Systems" at CPHbusiness.  
