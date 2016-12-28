@@ -5,8 +5,8 @@ This is created for the assignment of the course "Development of Large Systems" 
 
 Cluster I has agreed on a contract and we implemented against the contract.  
 
-[The link to code contract](https://github.com/Legendslayer/FerryProjectContract)  
-[The link to toolbox](https://github.com/tompet815/toolbox) 
+[The link to code contract and toolbox](https://github.com/Legendslayer/FerryProjectContract)  
+
   
 We have created the backend mock projects and frontend project.  
 As the digram below shows, the backend mock has a dependency of the contract project and the frontend has a dependency of the dummy backend project.  
@@ -39,27 +39,27 @@ the image will be deployed to a docker container.
   
 Jenkins is set up so that every time a change is pushed to GitHub, a build job is generated.
 
-![triggers]("Build triggers")
-![starter]("Build starter")
+![triggers](/images/buildTriggers.jpg)
+![starter](/images/buildStart.jpg)
   
 We set up the build trigger so that the build of BackendMock will trigger the build of Frontend_Customer.
 In order for that to be possible, we not only set up jenkins, but also to add a webhook on GitHub. An example is shown below:
   
-![webhook]("Webhook")
+![webhook](/images/webhooks.jpg)
   
 Jenkins is also set up so that when a build job is finished, the jar file will be saved to the artifactory.  
 The set up is shown in the following picture  
 
-![post build actions]("Post build actions")
+![post build actions](images/postBuildActions.jpg)
 
 A view of the list of builds in the artifactory can be seen below:  
   
-![snapshots]("snapshots")
+![snapshots](/images/warFilesArtifactory.jpg)
   
 ## Testing  
 
 We implemented tests for the dummy backend and frontend.  
-Backend group promised to create contract test, but we don’t have any test at this point (27th dec 2016) yet.  
+Backend group promised to create contract test, but we don’t have any test at this point (28th dec 2016) yet.  
 So we created a sample contract test to see how it works.  
 
 [Link to Contract Test](https://github.com/tompet815/ContractTest_JustForTrial)
@@ -82,3 +82,37 @@ The diagram below shows our verification structure.
 
 ![verification](/images/Verification.png)
 
+
+## Code examples
+  
+We will show some code examples of implementation of the use case "Cancel reservation" below.
+
+*  From the web servlet:
+
+```java
+reservationNo = request.getParameter("reservationno");
+            if (reservationNo == null) {
+                request.setAttribute("hidden", "hidden");
+                request.setAttribute("error", "Error. The reservation number is required");
+            }
+            else {
+
+                int intResNo = Integer.parseInt(reservationNo);
+                if (mock.deleteReservation(new ReservationIdentifier(intResNo))) {
+                    request.setAttribute("hidden", "hidden");
+                    request.setAttribute("success", "Your reservation has successfully deleted.");
+                }
+                else {
+                    request.setAttribute("hidden", "");
+                    request.setAttribute("error", "System Error. Please contact Cluster II Ferries");
+                }
+            }
+```
+  
+* From the jsp file:
+```html
+<form method="post" style="display:inline-block">
+     <input name="reservationno" hidden value="${reservationno}">
+     <button type="submit"class="btn btn-danger">Delete reservation <i class="fa fa-ban" aria-hidden="true"></i></button>
+</form>
+```
