@@ -92,7 +92,7 @@ public class MyReservationTest {
         verify(request, never()).setAttribute("reservationno", "1000");
         verify(mockbackend, atLeast(1)).deleteReservation((ReservationIdentifier) anyObject());
         verify(request, atLeast(1)).setAttribute("hidden", "hidden");
-        verify(request, atLeast(1)).setAttribute("success", "Your reservation has successfully cancelled.");
+        verify(request, atLeast(1)).setAttribute("success", "Your reservation has been deleted successfully.");
 
     }
      @Test
@@ -104,7 +104,7 @@ public class MyReservationTest {
         verify(request, never()).setAttribute("reservationno", "1000");
         verify(mockbackend, atLeast(1)).deleteReservation((ReservationIdentifier) anyObject());
         verify(request, atLeast(1)).setAttribute("hidden", "");
-        verify(request, atLeast(1)).setAttribute("error", "System Error. Please contact Cluster II Ferries");
+        verify(request, atLeast(1)).setAttribute("error", "System Error. Please contact Cluster I Ferries");
 
     }
      @Test

@@ -82,11 +82,11 @@ public class MyReservation extends HttpServlet {
                 int intResNo = Integer.parseInt(reservationNo);
                 if (mock.deleteReservation(new ReservationIdentifier(intResNo))) {
                     request.setAttribute("hidden", "hidden");
-                    request.setAttribute("success", "Your reservation has successfully deleted.");
+                    request.setAttribute("success", "Your reservation has been deleted successfully.");
                 }
                 else {
                     request.setAttribute("hidden", "");
-                    request.setAttribute("error", "System Error. Please contact Cluster II Ferries");
+                    request.setAttribute("error", "System Error. Please contact Cluster I Ferries");
                 }
             }
             request.getRequestDispatcher("my.jsp").forward(request, response);
