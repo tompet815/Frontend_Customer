@@ -59,7 +59,7 @@ A view of the list of builds in the artifactory can be seen below:
 ## Testing  
 
 We implemented tests for the dummy backend and frontend.  
-Backend group promised to create contract test, but we don’t have any test at this point (28th dec 2016) yet.  
+Backend group promised to create contract test, but we don’t have any test at this point (1st of January 2017) yet.  
 So we created a sample contract test to see how it works.  
 
 [Link to Contract Test](https://github.com/tompet815/ContractTest_JustForTrial)
